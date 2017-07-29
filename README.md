@@ -1,6 +1,6 @@
 # Popular-Movies
 ___
-**Udacity** Android Developer Nanodegree course project 1.
+**[Udacity]** Android Developer Nanodegree course project 1.
 
 ### Features
 ___
@@ -29,7 +29,8 @@ Go to *MovieQueryUtils.java* under utils package, find the line below and replac
 private final static String API_KEY = "9e62d82eada******************";
 ```
 
-You can get the API key from here [link text api]
+You can get the API key from here [themoviedb]
 
 
-[link text api]: https://www.themoviedb.org
+[themoviedb]: https://www.themoviedb.org
+[udacity]: https://udacity.com/
