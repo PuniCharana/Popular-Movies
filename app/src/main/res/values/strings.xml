@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <string name="no_internet_connection">No internet connection.</string>
+    <string name="actionbar_spinner">ActionBar Spinner</string>
+    <string name="movie_banner">Movie banner</string>
+    <string name="movie_rating">Movie rating</string>
+    <string name="rating">Rating:</string>
+    <string name="users">users</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="overview">Overview</string>
+    <string name="release_date">release date</string>
+    <string name="language">(en)</string>
+    <string name="movie_title">Title</string>
+    <string name="select_movie_query_option">Select movie query option.</string>
+
+    <string-array name="options">
+        <item>Popular</item>
+        <item>Top Rated</item>
+        <item>Upcoming</item>
+        <item>Now Playing</item>
+    </string-array>
 </resources>
