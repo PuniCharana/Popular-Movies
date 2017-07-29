@@ -15,7 +15,7 @@ ___
 
 ```
 $ git clone https://github.com/PuniCharana/Popular-Movies.git
-``
+```
 
 This project uses third party api to load movies.
 
