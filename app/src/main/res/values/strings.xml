@@ -1,17 +1,7 @@
 <resources>
     <string name="app_name">Popular Movies</string>
     <string name="no_internet_connection">No internet connection.</string>
-    <string name="actionbar_spinner">ActionBar Spinner</string>
-    <string name="movie_banner">Movie banner</string>
-    <string name="movie_rating">Movie rating</string>
-    <string name="rating">Rating:</string>
-    <string name="users">users</string>
-    <string name="movie_poster">Movie poster</string>
-    <string name="overview">Overview</string>
-    <string name="release_date">release date</string>
-    <string name="language">(en)</string>
-    <string name="movie_title">Title</string>
-    <string name="select_movie_query_option">Select movie query option.</string>
+    <string name="menu_actionbar_spinner">ActionBar Spinner</string>
 
     <string-array name="options">
         <item>Popular</item>
@@ -19,4 +9,47 @@
         <item>Upcoming</item>
         <item>Now Playing</item>
     </string-array>
+
+    <string name="movie_language">Language: %s</string>
+    <string name="movie_release_date">Release date: %s</string>
+    <string name="movie_popularity">Popularity: %.1f</string>
+    <string name="movie_runtime">Runtime: %d mins</string>
+    <string name="movie_status">Status: %s</string>
+    <string name="title_activity_actor_details">ActorDetailsActivity</string>
+
+
+    <string name="actor_name">Name: %s</string>
+    <string name="actor_birth_day">Birthday: %s</string>
+    <string name="actor_place_of_birth">Place of birth: %s</string>
+    <string name="actor_homepage">Website: %s</string>
+    <string name="actor_biography">Biography: %s</string>
+
+    <string name="na">N/A</string>
+    <string name="no_favorites_found">Not favorites found</string>
+    <string name="not_found">Not found!</string>
+    <string name="review_content">Lorem Ipsum</string>
+
+    <string name="content_description_actor_profile">Actor profile</string>
+    <string name="content_description_author_profile">Author profile</string>
+    <string name="content_description_play_icon">play icon</string>
+    <string name="content_description_share_icon">Share icon</string>
+    <string name="content_description_movie_thumbnail">Movie thumbnail</string>
+
+    <string name="menu_title_settings">Settings</string>
+    <string name="menu_title_favorite">Favorite</string>
+    <string name="menu_title_help">Help</string>
+
+    <string name="bottom_nav_title_discover">Discover</string>
+    <string name="bottom_nav_title_favorite">Favorite</string>
+    <string name="content_description_video_poster">Video Poster</string>
+    <string name="content_description_star_icon">Icon</string>
+
+    <string name="label_rating">Rating:</string>
+    <string name="label_users">users</string>
+    <string name="label_total">/10 from</string>
+    <string name="label_status">Status: Released</string>
+    <string name="label_overview">Overview:</string>
+    <string name="help_message">Swipe left to remove movie from favorites.</string>
+    <string name="label_fullscreen">Always play video in fullscreen</string>
+    <string name="label_exit_player">Exit video player on tap outside video frame</string>
 </resources>

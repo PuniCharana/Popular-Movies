@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:paddingLeft="@dimen/text_margin"
+    android:paddingStart="@dimen/text_margin"
+    android:paddingTop="16dp">
+
+    <ImageView
+        android:contentDescription="@string/content_description_play_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_play_arrow"
+        android:layout_gravity="center_vertical|center_horizontal" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            tools:text="Title"
+            android:id="@+id/title"
+            android:paddingLeft="@dimen/text_margin"
+            android:paddingRight="@dimen/text_margin"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="sans-serif-medium"/>
+        <LinearLayout
+            android:paddingLeft="@dimen/text_margin"
+            android:paddingRight="@dimen/text_margin"
+            android:paddingTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                tools:text="size"
+                android:gravity="center"
+                android:id="@+id/size"
+                android:fontFamily="sans-serif-medium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:paddingLeft="@dimen/text_margin"
+                tools:text="age"
+                android:id="@+id/site"
+                android:fontFamily="sans-serif-medium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="@dimen/text_margin"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.12"
+            android:background="@android:color/black"/>
+    </LinearLayout>
+
+    <ImageButton
+        android:contentDescription="@string/content_description_share_icon"
+        android:id="@+id/share_btn"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:padding="@dimen/text_margin"
+        android:layout_marginRight="@dimen/text_margin"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

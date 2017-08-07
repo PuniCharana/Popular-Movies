@@ -6,6 +6,7 @@
 
     <!--Single item movie thumbnail-->
     <ImageView
+        android:contentDescription="@string/content_description_movie_thumbnail"
         android:id="@+id/iv_movie_thumbnail"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/text_margin"
+    tools:context="com.example.android.popularmovies.activities.SettingsActivity">
+
+    <CheckBox
+        android:id="@+id/checkBox_fullscreen"
+        android:layout_width="match_parent"
+        android:button="@null"
+        android:text="@string/label_fullscreen"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:layout_marginTop="@dimen/text_margin"
+        android:id="@+id/checkBox_on_tap_exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:text="@string/label_exit_player" />
+</LinearLayout>

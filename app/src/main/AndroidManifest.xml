@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +22,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MovieDetailsActivity"
+            android:name=".activities.SettingsActivity"
             android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.MovieDetailsActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ActorDetailsActivity"
+            android:label="@string/title_activity_actor_details"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".activities.CustomYoutubePlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <provider
+            android:name=".data.MovieContentProvider"
+            android:authorities="com.example.android.popularmovies"
+            android:exported="false" />
     </application>
 
 </manifest>

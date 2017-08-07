@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--https://developers.google.com/youtube/android/player/-->
+    <string name="youtube_api_key">YOUR_YOUTUBE_API_KEY</string>
+    <!--https://www.themoviedb.org/-->
+    <string name="movie_db_api_key">YOUR_MOVIE_DB_API_KEY</string>
+</resources>

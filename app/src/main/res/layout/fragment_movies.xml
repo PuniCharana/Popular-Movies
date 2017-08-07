@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.popularmovies.fragments.DiscoverFragment">
+
+    <!--Display lists of movies -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_movies_lists"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!--Display when no internet connection-->
+    <TextView
+        android:id="@+id/tv_no_internet_connection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/no_internet_connection"
+        android:textSize="@dimen/error_message_text_size"
+        android:visibility="invisible" />
+
+    <!--Show loading indicator while loading data-->
+    <ProgressBar
+        android:id="@+id/pb_loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+</FrameLayout>

@@ -1,97 +1,135 @@
 package com.example.android.popularmovies.activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.adapters.TabsPagerAdapter;
+import com.example.android.popularmovies.data.MovieContract;
+import com.example.android.popularmovies.fragments.CastFragment;
+import com.example.android.popularmovies.fragments.OverviewFragment;
+import com.example.android.popularmovies.fragments.ReviewsFragment;
+import com.example.android.popularmovies.fragments.TrailersFragment;
+import com.example.android.popularmovies.models.Movie;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
+    private static final String TAG = MovieDetailsActivity.class.getSimpleName();
 
-    private ImageView mMovieThumbnail;
-    private TextView mMovieVoteAverage;
-    private TextView mMovieVoteCount;
-    private ImageView mMoviePoster;
-    private TextView mMovieTitle;
-    private TextView mMovieLanguage;
-    private TextView mMovieReleaseDate;
-    private TextView mMoviePopularity;
-    private TextView mMovieOverview;
-
+    private Movie movie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tab_toolbar);
+        setSupportActionBar(toolbar);
 
-        if ( getSupportActionBar() != null ) {
+        if (getSupportActionBar()!=null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mMovieThumbnail = (ImageView) findViewById(R.id.movie_thumbnail);
-        mMovieVoteAverage = (TextView) findViewById(R.id.movie_rating);
-        mMovieVoteCount = (TextView) findViewById(R.id.movie_vote_count);
-        mMoviePoster = (ImageView) findViewById(R.id.movie_poster);
-        mMovieTitle = (TextView) findViewById(R.id.movie_title);
-        mMovieLanguage = (TextView) findViewById(R.id.movie_language);
-        mMovieReleaseDate = (TextView) findViewById(R.id.movie_release_date);
-        mMoviePopularity = (TextView) findViewById(R.id.movie_popularity);
-        mMovieOverview = (TextView) findViewById(R.id.movie_overview);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.tab_viewpager);
+        setupViewPager(viewPager);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        movie = getIntent().getParcelableExtra("MOVIE");
 
-        if ( bundle != null ) {
-            int id = bundle.getInt("id");
-            String title = bundle.getString("title");
-            String poster_path = bundle.getString("poster_path");
-            String backdrop_path = bundle.getString("backdrop_path");
-            String release_date = bundle.getString("release_date");
-            String overview = bundle.getString("overview");
-            String original_language = bundle.getString("original_language");
-            double popularity = bundle.getDouble("popularity");
-            double vote_average = bundle.getDouble("vote_average");
-            int vote_count = bundle.getInt("vote_count");
+        String img = movie.getBackdrop_path();
+        String title = movie.getTitle();
 
-            if ( getSupportActionBar() != null ) {
-                getSupportActionBar().setTitle(title);
-            }
+        getSupportActionBar().setTitle(title);
 
-            /*
-            * For more image sizes check the link below
-            * https://www.themoviedb.org/talk/53c11d4ec3a3684cf4006400?language=en
-            * */
+        String imagePath = "http://image.tmdb.org/t/p/w780"+img;
 
-            String imageThumbnailPath = "http://image.tmdb.org/t/p/w780"+ backdrop_path;
-            Glide.with(this)
-                    .load(imageThumbnailPath)
-                    .placeholder(R.drawable.cinema)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .dontAnimate()
-                    .centerCrop()
-                    .into(mMovieThumbnail);
+        ImageView imageView = (ImageView) findViewById(R.id.tab_header);
+        Glide.with(this)
+                .load(imagePath)
+                .placeholder(R.drawable.cinema)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .dontAnimate()
+                .centerCrop()
+                .into(imageView);
+    }
+
+    public Movie getMovie(){
+        return movie;
+    }
 
 
-            mMovieVoteAverage.setText(Double.toString(vote_average));
-            mMovieVoteCount.setText(Integer.toString(vote_count));
+    private void setupViewPager(ViewPager viewPager) {
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new OverviewFragment(), "Overview");
+        adapter.addFragment(new TrailersFragment(), "Trailers");
+        adapter.addFragment(new CastFragment(), "Cast");
+        adapter.addFragment(new ReviewsFragment(), "Reviews");
+        viewPager.setAdapter(adapter);
+    }
 
-            String imagePath = "http://image.tmdb.org/t/p/w185"+ poster_path;
-            Glide.with(this)
-                    .load(imagePath)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .fitCenter()
-                    .into(mMoviePoster);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.movie_details_menu, menu);
+        return true;
+    }
 
-            mMovieTitle.setText(title);
-            mMovieLanguage.setText("Language: "+ original_language);
-            mMovieReleaseDate.setText("Release date: "+ release_date);
-            mMoviePopularity.setText("Popularity: "+ popularity);
-            mMovieOverview.setText(overview);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_settings:
+                Intent intent = new Intent(MovieDetailsActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_favorite:
+                addToFavorite();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    private void addToFavorite() {
+
+        // Insert new task data via a ContentResolver
+        // Create new empty ContentValues object
+        ContentValues contentValues = new ContentValues();
+
+        // Put the task description and selected mPriority into the ContentValues
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_ID, movie.getId());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_VOTE_COUNT, movie.getVote_count());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_TITLE, movie.getTitle());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_POSTER_PATH, movie.getPoster_path());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_BACKDROP, movie.getBackdrop_path());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_RELEASE_DATE, movie.getRelease_date());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_OVERVIEW, movie.getOverview());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_ORIGINAL_LANGUAGE, movie.getOriginal_language());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_POPULARITY, movie.getPopularity());
+        contentValues.put(MovieContract.TaskEntry.COLUMN_MOVIE_VOTE_AVERAGE, movie.getVote_average());
+
+        // Insert the content values via a ContentResolver
+        Uri uri = getContentResolver().insert(MovieContract.TaskEntry.CONTENT_URI, contentValues);
+
+        // Display the URI that's returned with a Toast
+        if(uri != null) {
+            Log.d(TAG,  uri.toString());
+            Toast.makeText(this, "Added to favorite", Toast.LENGTH_SHORT).show();
         }
     }
 }

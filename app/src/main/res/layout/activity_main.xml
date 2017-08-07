@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.popularmovies.activities.MainActivity">
+    android:orientation="vertical">
 
-    <!--Display lists of movies -->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_movies_lists"
+    <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <!--Display when no internet connection-->
-    <TextView
-        android:id="@+id/tv_no_internet_connection"
-        android:text="@string/no_internet_connection"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:visibility="invisible"
-        android:layout_height="wrap_content" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
 
-    <!--Show loading indicator while loading data-->
-    <ProgressBar
-        android:id="@+id/pb_loading_indicator"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:visibility="invisible"
-        android:layout_height="wrap_content" />
+    </LinearLayout>
 
-</FrameLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        style="@style/AppTheme"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_navigation" />
+
+</LinearLayout>
